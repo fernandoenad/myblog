@@ -10,7 +10,7 @@ class BlogController extends Controller
     //
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'DESC')->get();
         //dd($blogs);
 
         return view('home', ['blogs' => $blogs]);

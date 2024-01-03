@@ -32,3 +32,7 @@ Route::get('/contact-us', function () {
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
+
+Route::get('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'index'])->name('admin.blogs.index');
+Route::get('/admin/blogs/create', [App\Http\Controllers\AdminBlogController::class, 'create'])->name('admin.blogs.create');
+Route::post('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'store'])->name('admin.blogs.store');

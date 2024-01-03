@@ -402,6 +402,7 @@ return [
             'text' => 'Blogs',
             'url'  => 'admin/blogs',
             'icon' => 'fas fa-fw fa-book',
+            'active' => ['admin/blogs', 'admin/blogs/create'],
         ],
     ],
 
