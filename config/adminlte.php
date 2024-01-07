@@ -402,7 +402,7 @@ return [
             'text' => 'Blogs',
             'url'  => 'admin/blogs',
             'icon' => 'fas fa-fw fa-book',
-            'active' => ['admin/blogs', 'admin/blogs/create'],
+            'active' => ['admin/blogs', 'admin/blogs/create', 'regex:@^admin/blogs/[0-9]+$@', 'regex:@^admin/blogs/\d+/delete+$@'],
         ],
     ],
 

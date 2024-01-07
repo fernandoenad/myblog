@@ -35,4 +35,33 @@ class AdminBlogController extends Controller
 
         return redirect(route('admin.blogs.index'))->with('status', 'Blog has been successfully saved.');
     }
+
+    public function modify(Blog $blog)
+    {
+        return view('admin.blogs.modify', ['blog' => $blog]);
+    }
+
+    public function update(Request $request, Blog $blog)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $blog->update($data);
+
+        return redirect(route('admin.blogs.modify', ['blog' => $blog]))->with('status', 'Blog has been successfully updated.');
+    }
+
+    public function delete(Blog $blog)
+    {
+        return view('admin.blogs.delete', ['blog' => $blog]);
+    }
+
+    public function destroy(Blog $blog)
+    {
+        $blog->delete();
+
+        return redirect(route('admin.blogs.index'))->with('status', 'Blog has been successfully deleted.');
+    }
 }

@@ -36,3 +36,9 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::get('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'index'])->name('admin.blogs.index');
 Route::get('/admin/blogs/create', [App\Http\Controllers\AdminBlogController::class, 'create'])->name('admin.blogs.create');
 Route::post('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'store'])->name('admin.blogs.store');
+Route::get('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'modify'])->name('admin.blogs.modify');
+Route::put('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'update'])->name('admin.blogs.update');
+Route::get('/admin/blogs/{blog}/delete', [App\Http\Controllers\AdminBlogController::class, 'delete'])->name('admin.blogs.delete');
+Route::delete('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'destroy'])->name('admin.blogs.destroy');
+
+

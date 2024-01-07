@@ -24,9 +24,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                    <th style="width: 10px">ID</th>
-                    <th>Title</th>
-                    <th>Content</th>
+                        <th style="width: 10px">ID</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +36,10 @@
                             <td>{{$blog->id}}</td>
                             <td>{{$blog->title}}</td>
                             <td>{{substr($blog->content,0,50)}}</td>
+                            <td>
+                                <a href="{{route('admin.blogs.modify', $blog)}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>&nbsp;
+                                <a href="{{route('admin.blogs.delete', $blog)}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
