@@ -16,7 +16,9 @@ class BlogController extends Controller
         return view('home', ['blogs' => $blogs]);
     }
 
-    public function show(Blog $blog){
+    public function show(Blog $blog)
+    {
+        //$comments = $blog->comments;
 
         return view('show', ['blog' => $blog]);
     }

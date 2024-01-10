@@ -392,7 +392,7 @@ return [
             'url'        => '#',
         ],
         */
-        ['header' => 'menu'],
+        ['header' => 'Menu'],
         [
             'text' => 'Dashboard',
             'url'  => 'admin',
@@ -403,6 +403,20 @@ return [
             'url'  => 'admin/blogs',
             'icon' => 'fas fa-fw fa-book',
             'active' => ['admin/blogs', 'admin/blogs/create', 'regex:@^admin/blogs/[0-9]+$@', 'regex:@^admin/blogs/\d+/delete+$@'],
+        ],
+        ['header' => 'User Management'],
+        [
+            'text' => 'Users',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['admin/users', 'admin/users/create', 'regex:@^admin/users/[0-9]+$@', 'regex:@^admin/users/\d+/delete+$@'],
+        ],
+        ['header' => 'User Tools'],
+        [
+            'text' => 'Change Password',
+            'url'  => 'admin/auth',
+            'icon' => 'fas fa-fw fa-cog',
+            'active' => ['admin/auth'],
         ],
     ],
 

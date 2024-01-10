@@ -1,39 +1,43 @@
 @extends('adminlte::page')
 
-@section('title', 'Users -> Create a new blog')
+@section('title', 'Blogs -> Add new user')
 
 @section('content_header')
-    <h1>Users -> Create a new blog</h1>
+    <h1>Blogs -> Add New User</h1>
 @stop
 
 @section('content')
     <div class="card">
-        <form method="post" action="{{route('admin.blogs.store')}}">
+        <form method="post" action="{{route('admin.users.store')}}">
             @csrf 
             @method('post')
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{old('title')}}" placeholder="Enter blog title">
-                    @error('title')
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{old('name')}}" placeholder="Enter name">
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="content" rows="10" placeholder="Enter blog content">{{old('content')}}</textarea>
-                    @error('content')
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email')}}" placeholder="Enter email">
+                    @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="password">Default Password</label>
+                    <input type="text" name="password" class="form-control" value="P@ssw0rd" readonly>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{route('admin.blogs.index')}}" type="button" class="btn btn-default float-right">Cancel</a>
+                <a href="{{route('admin.users.index')}}" type="button" class="btn btn-default float-right">Cancel</a>
             </div>
         </form>
     </div>

@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +22,9 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', [App\Http\Controllers\BlogController::class, 'index'])->name('home.index');
-Route::get('/blogs/{blog}', [App\Http\Controllers\BlogController::class, 'show'])->name('home.show');
+Route::get('/', [BlogController::class, 'index'])->name('home.index');
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('home.show');
+Route::post('/blogs/{blog}', [CommentController::class, 'store'])->name('home.comment.store');
 
 Route::get('/about', function () {
     return view('about');
@@ -29,16 +33,29 @@ Route::get('/about', function () {
 Route::get('/contact-us', function () {
     return view('contactus');
 });
-Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
+Auth::routes(['register' => false]);
 
-Route::get('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'index'])->name('admin.blogs.index');
-Route::get('/admin/blogs/create', [App\Http\Controllers\AdminBlogController::class, 'create'])->name('admin.blogs.create');
-Route::post('/admin/blogs', [App\Http\Controllers\AdminBlogController::class, 'store'])->name('admin.blogs.store');
-Route::get('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'modify'])->name('admin.blogs.modify');
-Route::put('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'update'])->name('admin.blogs.update');
-Route::get('/admin/blogs/{blog}/delete', [App\Http\Controllers\AdminBlogController::class, 'delete'])->name('admin.blogs.delete');
-Route::delete('/admin/blogs/{blog}', [App\Http\Controllers\AdminBlogController::class, 'destroy'])->name('admin.blogs.destroy');
+Route::get('/admin', [HomeController::class, 'index'])->name('admin.index');
 
+Route::get('/admin/blogs', [AdminBlogController::class, 'index'])->name('admin.blogs.index');
+Route::get('/admin/blogs/create', [AdminBlogController::class, 'create'])->name('admin.blogs.create');
+Route::post('/admin/blogs', [AdminBlogController::class, 'store'])->name('admin.blogs.store');
+Route::get('/admin/blogs/{blog}', [AdminBlogController::class, 'modify'])->name('admin.blogs.modify');
+Route::put('/admin/blogs/{blog}', [AdminBlogController::class, 'update'])->name('admin.blogs.update');
+Route::get('/admin/blogs/{blog}/delete', [AdminBlogController::class, 'delete'])->name('admin.blogs.delete');
+Route::delete('/admin/blogs/{blog}', [AdminBlogController::class, 'destroy'])->name('admin.blogs.destroy');
+
+Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+Route::get('/admin/users/{user}', [AdminUserController::class, 'modify'])->name('admin.users.modify');
+Route::put('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
+Route::get('/admin/users/{user}/delete', [AdminUserController::class, 'delete'])->name('admin.users.delete');
+Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+Route::get('/admin/users/{user}/reset', [AdminUserController::class, 'reset'])->name('admin.users.reset');
+Route::patch('/admin/users/{user}', [AdminUserController::class, 'resetOk'])->name('admin.users.resetOk');
+
+Route::get('/admin/auth', [AdminAuthController::class, 'index'])->name('admin.auth.index');
+Route::put('/admin/auth', [AdminAuthController::class, 'changePassword'])->name('admin.auth.changePassword');
 
