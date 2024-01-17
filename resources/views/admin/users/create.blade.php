@@ -31,6 +31,19 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="level">User Level</label>
+                    <select name="level" class="form-control @error('level') is-invalid @enderror" id="level" value="{{old('level')}}">
+                        <option value="">--- please select ----</option>
+                        <option value="0" {{old('level') == 0 ? "selected" : ""}}>Staff</option>
+                        <option value="1" {{old('level') == 1 ? "selected" : ""}}>Administrator</option>
+                    </select>
+                    @error('level')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="password">Default Password</label>
                     <input type="text" name="password" class="form-control" value="P@ssw0rd" readonly>
                 </div>

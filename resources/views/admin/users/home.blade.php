@@ -27,6 +27,8 @@
                         <th style="width: 10px">ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,6 +38,8 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>{{$user->role->getLevel()}}</td>
+                            <td>{{$user->role->getStatus()}}</td>
                             <td>
                                 <a href="{{route('admin.users.reset', $user)}}" class="btn btn-primary" title="Reset password"><i class="fas fa-key"></i></a>&nbsp;
                                 <a href="{{route('admin.users.modify', $user)}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>&nbsp;

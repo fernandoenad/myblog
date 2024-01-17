@@ -36,6 +36,32 @@
                         </span>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="level">User Level</label>
+                    <select name="level" class="form-control @error('level') is-invalid @enderror" id="level" value="{{old('level')}}">
+                        <option value="">--- please select ----</option>
+                        <option value="0" {{$user->role->level == 0 ? "selected" : ""}}>Staff</option>
+                        <option value="1" {{$user->role->level == 1 ? "selected" : ""}}>Administrator</option>
+                    </select>
+                    @error('level')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="status">User Level</label>
+                    <select name="status" class="form-control @error('status') is-invalid @enderror" id="status" value="{{old('status')}}">
+                        <option value="">--- please select ----</option>
+                        <option value="0" {{$user->role->status == 0 ? "selected" : ""}}>Inactive</option>
+                        <option value="1" {{$user->role->status == 1 ? "selected" : ""}}>Active</option>
+                    </select>
+                    @error('status')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Update</button>

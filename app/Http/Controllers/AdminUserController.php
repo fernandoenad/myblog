@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
@@ -30,12 +31,23 @@ class AdminUserController extends Controller
         $data = $request->validate([
             'name' => 'required|min:8',
             'email' => 'required|email|unique:users',
+            'level' => 'required',
             'password' => 'required',
         ]);
 
         $data['password'] = Hash::make($data['password']);
 
-        $newUser = User::create($data);
+        $newUser = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        $newRole = Role::create([
+            'level' => $data['level'],
+            'status' => 1,
+            'user_id' => $newUser->id,
+        ]);
 
         return redirect(route('admin.users.index'))->with('status', 'User has been succesfully saved!');
     }
@@ -49,9 +61,16 @@ class AdminUserController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|min:8',
+            'level' => 'required',
+            'status' => 'required',
         ]);
 
-        $user->update($data);
+        $user->update(['name' => $data['name']]);
+
+        $user->role->update([
+            'level' => $data['level'],
+            'status' => $data['status'],
+        ]);
 
         return redirect(route('admin.users.modify', ['user' => $user]))->with('status', 'User has been successfully updated!');
     }
